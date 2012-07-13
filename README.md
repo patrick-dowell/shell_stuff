@@ -8,7 +8,7 @@ This file will modify your currently existing cd to detect whether the pwd is a 
 
 ### Installation:
 
-1. cat bash_aliases >> ~/.bash_aliases
+1. `cat bash_aliases >> ~/.bash_aliases`
 2. In ~/.bashrc, add:
 
         source ~/.bash_aliases
@@ -17,3 +17,5 @@ This file will modify your currently existing cd to detect whether the pwd is a 
         if [ -f ~/.bashrc ]; then
              source ~/.bashrc
         fi
+4. Restart your bash shell.
+5. `cd /path/to/your/virtualenv/`
