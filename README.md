@@ -16,6 +16,6 @@ This file will modify your currently existing cd to detect whether the pwd is a 
 
     > if [ -f ~/.bashrc ]; then
     
-    >     source ~/.bashrc
+    > source ~/.bashrc
     
     > fi
