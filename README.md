@@ -10,8 +10,10 @@ This file will modify your currently existing cd to detect whether the pwd is a 
 
 1. cat bash_aliases >> ~/.bash_aliases
 2. In ~/.bashrc, add:
+
     > source ~/.bash_aliases
 3. In ~/.bash_profile, add:
+
     > if [ -f ~/.bashrc ]; then
     >     source ~/.bashrc
     > fi
