@@ -15,7 +15,5 @@ This file will modify your currently existing cd to detect whether the pwd is a 
 3. In ~/.bash_profile, add:
 
         if [ -f ~/.bashrc ]; then
-    
              source ~/.bashrc
-    
         fi
