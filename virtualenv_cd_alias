@@ -3,11 +3,11 @@ activator_suffix="bin/activate"
 # Quick check to see if we're in a virtualenv directory.
 function activate_global_cd {
     ROOT="$PWD"
-	package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
+    package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
     for (( $package; package>0; package-- ))
     do
         activator="${ROOT}/$activator_suffix"
-		python_binary="${ROOT}/bin/python"
+        python_binary="${ROOT}/bin/python"
 	
         if [ -f "$activator" ]
         then
@@ -17,7 +17,7 @@ function activate_global_cd {
                 source "$activator"
             fi
         fi
-		ROOT="$ROOT/.."
+        ROOT="$ROOT/.."
     done
     
 }
@@ -27,11 +27,11 @@ function activate_cd {
     found=0
 	
     ROOT="$PWD"
-	package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
+    package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
     for (( $package; package>0; package-- ))
     do
         activator="${ROOT}/$activator_suffix"
-		python_binary="${ROOT}/bin/python"
+        python_binary="${ROOT}/bin/python"
 	
         if [ -f "$activator" ]
         then
@@ -41,7 +41,7 @@ function activate_cd {
             fi
         fi
         
-		ROOT="$ROOT/.."
+        ROOT="$ROOT/.."
     done
  	
 
@@ -51,27 +51,27 @@ function activate_cd {
     found2=0
 	
     ROOT="$PWD"
-	package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
+    package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
     for (( $package; package>0; package-- ))
     do
         activator="${ROOT}/$activator_suffix"
-		python_binary="${ROOT}/bin/python"
+        python_binary="${ROOT}/bin/python"
 	
         if [ -f "$activator" ]
         then
             if [ -f "$python_binary" ]
             then 
-                echo "sourcing $activator"
-                source "$activator"
-                found2=1
+            echo "sourcing $activator"
+            source "$activator"
+            found2=1
             fi
         fi
         
-		ROOT="$ROOT/.."
+        ROOT="$ROOT/.."
     done
 
     if [[ $found -eq 1 && $found2 -eq 0 ]];then
-		deactivate
+        deactivate
     fi
 
 }
