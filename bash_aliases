@@ -1,32 +1,25 @@
-activator="activate.sh"
+activator_suffix="bin/activate"
 
 # Searches entire pwd for activate.sh
 function activate_global_cd {
-    # Change IFS temporarily for iterating through directories
-    OLD_IFS="$IFS"
-    IFS="/"
-
-    ROOT=""
-
-    # Actually change directory
-    cd "$1"
-
-    _dfiles="`pwd`"
-
-    for token in $_dfiles
+    ROOT="$PWD"
+	package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
+    for (( $package; package>0; package-- ))
     do
-        ROOT="$ROOT$token/"
-        activator="${ROOT}activate.sh"
-
+        activator="${ROOT}/$activator_suffix"
+		python_binary="${ROOT}/bin/python"
+	
         if [ -f "$activator" ]
         then
-            echo "sourcing $activator"
-            source "$activator"
+            if [ -f "$python_binary" ]
+            then 
+                echo "sourcing $activator"
+                source "$activator"
+            fi
         fi
+		ROOT="$ROOT/.."
     done
-
-    # Restore IFS to its original state
-    IFS="$OLD_IFS"
+    
 }
 
 # Searches only the arguments directories for activate.sh
@@ -37,12 +30,17 @@ function activate_cd {
 	package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
     for (( $package; package>0; package-- ))
     do
-        activator="${ROOT}/activate.sh"
-
+        activator="${ROOT}/$activator_suffix"
+		python_binary="${ROOT}/bin/python"
+	
         if [ -f "$activator" ]
         then
-            found=1
+            if [ -f "$python_binary" ]
+            then 
+                found=1
+            fi
         fi
+        
 		ROOT="$ROOT/.."
     done
  	
@@ -56,14 +54,19 @@ function activate_cd {
 	package=$(echo $PWD | awk '{n = split($0,a,"/"); print n }')
     for (( $package; package>0; package-- ))
     do
-        activator="${ROOT}/activate.sh"
-
+        activator="${ROOT}/$activator_suffix"
+		python_binary="${ROOT}/bin/python"
+	
         if [ -f "$activator" ]
         then
-            echo "sourcing $activator"
-            source "$activator"
-            found2=1
+            if [ -f "$python_binary" ]
+            then 
+                echo "sourcing $activator"
+                source "$activator"
+                found2=1
+            fi
         fi
+        
 		ROOT="$ROOT/.."
     done
 
