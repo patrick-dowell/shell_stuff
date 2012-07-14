@@ -61,9 +61,13 @@ function activate_cd {
         then
             if [ -f "$python_binary" ]
             then 
-            echo "sourcing $activator"
-            source "$activator"
-            found2=1
+                found2=1 
+                if [ $found -eq 0 ]
+                then
+                    echo "sourcing $activator"
+                    source "$activator"
+                fi
+            
             fi
         fi
         
