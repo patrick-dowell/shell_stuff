@@ -24,6 +24,8 @@ function activate_global_cd {
 
 # Detect whether we've entered or left a virtualenv directory.
 function activate_cd {
+
+
     found=0
 	
     ROOT="$PWD"
@@ -46,7 +48,12 @@ function activate_cd {
  	
 
     # Actually change directory
-    cd "$1"
+    if [ -z "$1" ]
+    then
+        cd ~
+    else
+        cd "$1"
+    fi
 
     found2=0
 	
@@ -84,3 +91,4 @@ alias cd='activate_cd'
 
 # Always do a global search when starting a new terminal instance.
 activate_global_cd
+
